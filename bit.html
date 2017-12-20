@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Bitcoin</title>
+	<style>
+		.main {
+			font-family: Arial, Helvetica, sans-serif;
+			background-color: #f1f1f1;
+			border: 1px solid #ccc;
+			margin: 50px auto;
+			max-width: 980px;
+			padding: 5em;
+			text-align: center;
+		}
+
+		h1 {
+			margin: 0 0 1em 0;
+			padding: 0;
+		}
+
+		ul {
+			font-size: 26px;
+			list-style: none;
+			margin: 0 auto;
+			padding: 0;
+			width: 100%;
+		}
+
+		li {
+			border: 1px solid #ccc;
+			display: inline-block;
+			margin: 15px 10px 15px 10px;
+			padding: 25px 10px 10px 10px;
+			position: relative;
+			width: 45%;
+		}
+
+		li b {
+			background-color: #f1f1f1;
+			border: 1px solid #ccc;
+			display: block;
+			font-size: 12px;
+			padding: 5px 10px;
+			position: absolute;
+			right: 50%;
+			text-transform: uppercase;
+			top: -10px;
+			transform: translateX(50%);
+		}
+	</style>
+</head>
+<body>
+
+	<div class="main">
+		<h1>Bitcoin</h1>
+
+		<ul id="show-data"></ul>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			var showData = $('#show-data');
+
+			function getData() {
+				$.getJSON('https://www.mercadobitcoin.net/api/BTC/ticker/', function(data) {
+					var dados = Object.keys(data.ticker);
+
+					for (let i = 0; i < dados.length; i++) {
+						const item = dados[i];
+
+						showData.append('<li class="item-' + item + '"><b>' + item + '</b><span>' + Math.floor(data.ticker[item]) + '</span></li>')
+					}
+				});
+			}
+			getData();
+
+			// setInterval(getData, 3000);
+		});
+	</script>
+</body>
+</html>
