@@ -10,8 +10,13 @@
 
 		html,
 		body {
+			font-size: 18px;
 			margin: 0;
 			padding: 0;
+		}
+
+		@media (max-width: 960px) {
+			body { font-size: 12px; }
 		}
 
 		.main {
@@ -23,7 +28,7 @@
 			justify-content: center;
 			margin: 0 auto;
 			min-height: 100vh;
-			padding: 5em;
+			padding: 2em;
 			text-align: center;
 		}
 
@@ -34,7 +39,8 @@
 
 		ul {
 			display: flex;
-			font-size: 32px;
+			/* font-size: 32px; */
+			font-size: 3em;
 			flex-wrap: wrap;
 			list-style: none;
 			margin: 0 auto;
@@ -52,17 +58,25 @@
 			width: calc((100% / 3) - 20px);
 		}
 
+		@media (max-width: 960px) {
+			li { width: calc((100% / 2) - 20px); }
+		}
+
+		@media (max-width: 490px) {
+			li { width: calc(100% - 20px); }
+		}
+
 		li b {
 			background-color: #f1f1f1;
 			border: 1px solid #ccc;
 			display: block;
-			font-size: 12px;
+			font-size: 22px;
 			padding: 5px 10px;
 			position: absolute;
 			right: 50%;
 			text-transform: uppercase;
-			top: -15px;
-			transform: translateX(50%);
+			top: 0;
+			transform: translate(50%, -60%);
 		}
 
 		.updated { background-color: rgb(255, 255, 81); }
@@ -80,7 +94,7 @@
 <body>
 
 	<div class="main">
-		<h1>Bitcoin</h1>
+		<!-- <h1>Bitcoin</h1> -->
 
 		<div id="show-data">
 			<ul>
@@ -154,7 +168,7 @@
 			}
 			getData();
 
-			setInterval(getData, 5000);
+			setInterval(getData, 3000);
 		});
 	</script>
 </body>
