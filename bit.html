@@ -150,18 +150,37 @@
 
 			function getData() {
 				$.getJSON(urlApi, function(data) {
-					var dados = Object.keys(data.ticker);
 
-					for ( let i = 0; i < dados.length; i++ ) {
-						const item = dados[i];
-						const textItem = showData.find('.data-' + item).find('span');
-						const valorAnterior = textItem.text();
-						const valorNovo = Number( data.ticker[item] ).toFixed(2).replace('.', ',');
+					// var dados = Object.keys(data.ticker);
 
-						textItem.text( valorNovo );
+					// for ( let i = 0; i < dados.length; i++ ) {
+					// 	const item = dados[i];
+					// 	const textItem = showData.find('.data-' + item).find('span');
+					// 	const valorAnterior = textItem.text();
+					// 	const valorNovo = Number( data.ticker[item] ).toFixed(2).replace('.', ',');
 
-						if ( valorAnterior < valorNovo || valorAnterior > valorNovo ) {
-							updated( textItem );
+					// 	textItem.text( valorNovo );
+
+					// 	if ( valorAnterior < valorNovo || valorAnterior > valorNovo ) {
+					// 		updated( textItem );
+					// 	}
+					// }
+
+
+					var dados2 = data.ticker;
+
+					for ( const prop in dados2 ) {
+						if ( dados2.hasOwnProperty(prop) ) {
+							const item = dados2[prop];
+							const textItem = showData.find('.data-' + prop).find('span');
+							const valorAnterior = textItem.text();
+							const valorNovo = Number( item ).toFixed(2).replace('.', ',');
+
+							textItem.text( valorNovo );
+
+							if ( valorAnterior < valorNovo || valorAnterior > valorNovo ) {
+								updated( textItem );
+							}
 						}
 					}
 				});
